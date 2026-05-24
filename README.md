@@ -2,6 +2,12 @@
 
 Static HTML presentation deck for wealth management / asset allocation discussion.
 
+## Project Structure
+
+- `wealth_management_intro_deck.html` is the full presentation deck.
+- `index.html` redirects GitHub Pages visitors to the deck.
+- `assets/` contains the supporting charts, logos, and interactive chart page.
+
 ## View Locally
 
 Open `wealth_management_intro_deck.html` in a browser.
@@ -28,7 +34,7 @@ Use branches and pull requests so multiple people can edit the deck safely.
 2. Create a branch for the page you are editing, for example:
    - `edit/page-3-dca`
    - `edit/page-8-platforms`
-3. Edit `wealth_management_intro_deck.html` and any related SVG/HTML asset files.
+3. Edit `wealth_management_intro_deck.html` and any related files in `assets/`.
 4. Commit and push the branch.
 5. Open a pull request into `main`.
 6. Review the rendered GitHub Pages preview after merge.
