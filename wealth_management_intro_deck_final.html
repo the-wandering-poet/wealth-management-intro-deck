@@ -2310,6 +2310,37 @@
     .fi-tlt-shot .caption { color: var(--ink); font-size: 11.5px; line-height: 1.26; font-weight: 720; padding: 2px 2px 0; }
     .fi-tlt-shot .caption strong { color: var(--warn); font-weight: 820; }
 
+    section[aria-label="Fixed income access routes"] .asset-detail,
+    section[aria-label="Fixed income hold to maturity"] .asset-detail,
+    section[aria-label="Why TLT is not the same as a Treasury"] .asset-detail {
+      grid-template-columns: 150px minmax(0, 1fr);
+      gap: 14px;
+      padding: 10px 36px 8px;
+    }
+
+    section[aria-label="Fixed income access routes"] .asset-menu,
+    section[aria-label="Fixed income hold to maturity"] .asset-menu,
+    section[aria-label="Why TLT is not the same as a Treasury"] .asset-menu {
+      gap: 8px;
+      padding-right: 14px;
+    }
+
+    section[aria-label="Fixed income access routes"] .asset-tab,
+    section[aria-label="Fixed income hold to maturity"] .asset-tab,
+    section[aria-label="Why TLT is not the same as a Treasury"] .asset-tab {
+      min-height: 42px;
+      padding: 8px 10px;
+      font-size: 16px;
+      display: grid;
+      align-items: center;
+    }
+
+    section[aria-label="Fixed income access routes"] .fi-content,
+    section[aria-label="Fixed income hold to maturity"] .fi-content,
+    section[aria-label="Why TLT is not the same as a Treasury"] .fi-tlt-content {
+      padding: 0;
+    }
+
     /* Tax — Who's Affected matrix (new slide 31) */
     .tax-matrix-content { padding: 22px 60px 14px; display: grid; gap: 14px; align-content: start; min-height: 0; }
     .tax-matrix-warning { border: 1px solid #ead7a7; background: #fff8df; border-radius: 8px; padding: 12px 16px; display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: center; }
@@ -3540,7 +3571,7 @@
         <h1 class="cover-title">Demystify Personal Wealth Management</h1>
         <div class="cover-meta">
           <p>May 2026</p>
-          <p>Ann Li · Fran Chen MSx '26</p>
+          <p>Ann Li · Fran Chen · Stanford MSx '26</p>
         </div>
       </div>
       <footer class="footer">
@@ -4017,7 +4048,7 @@
       <header class="header">
         <div>
           <p class="kicker">Major Asset Classes</p>
-          <h1>Bear in mind the liquidity risk, then be cautious about GP selection and vintage years</h1>
+          <h1>PE/VC: bear in mind the liquidity risk, then be cautious about GP selection and vintage years</h1>
         </div>
         <div class="page-tag">Page 15 / 37 · PE / VC</div>
       </header>
@@ -4306,44 +4337,55 @@
         <div class="page-tag">Page 20 / 37 &middot; Access</div>
       </header>
 
-      <div class="fi-content">
-        <div class="fi-access-grid">
-          <article class="fi-access-card">
-            <div class="num-badge">1</div>
-            <h2>Individual bonds via direct issuer <em>(e.g. U.S. Treasury Department)</em></h2>
-            <p class="where"><strong>Where:</strong> TreasuryDirect.gov. Electronic-only accounts; no broker, no markup. Lowest-cost route for taxable government exposure.</p>
-            <div></div>
-            <p class="minimums">Marketable Treasuries: <strong>$100</strong> minimum; electronic savings bonds: <strong>$25</strong> minimum</p>
-          </article>
-          <article class="fi-access-card">
-            <div class="num-badge">2</div>
-            <h2>Individual bonds via brokerage platforms</h2>
-            <p class="where"><strong>Where:</strong> Fidelity, Schwab, Interactive Brokers, Vanguard bond and Certificate of Deposit desks. Inventory varies; secondary market is fragmented.</p>
-            <div></div>
-            <p class="minimums">Typical lot: <strong>$1,000</strong> face per bond; minimums vary by issue and broker</p>
-          </article>
-          <article class="fi-access-card">
-            <div class="num-badge">3</div>
-            <h2>ETFs and mutual funds</h2>
-            <div class="examples">
-              <p><strong>Examples:</strong></p>
-              <ul>
-                <li>Core aggregate bond index = AGG, BND</li>
-                <li>Investment grade corporate bonds = LQD</li>
-                <li>High yield bonds = HYG</li>
-                <li>Long-duration treasury = TLT</li>
-                <li>Money market funds = SPAXX, VMFXX, SWVXX</li>
-              </ul>
-            </div>
-            <p class="minimums">Low minimums, daily liquidity; most do <strong>not</strong> mature to par</p>
-          </article>
-          <article class="fi-access-card">
-            <div class="num-badge">4</div>
-            <h2>Ladders &amp; wrappers <em>(e.g. target-maturity ETFs, broker-built ladders, Separately Managed Accounts, or advisory portfolios)</em></h2>
-            <p class="where"><strong>Where:</strong> Brokerage tools, advisors, private banks, and defined-maturity ETF suites (iBonds, BulletShares).</p>
-            <div></div>
-            <p class="minimums">Good for <strong>planning</strong>; still check fees, liquidity, calls, and underlying holdings</p>
-          </article>
+      <div class="asset-detail">
+        <nav class="asset-menu" aria-label="Major asset class menu">
+          <p class="menu-label">Asset Class</p>
+          <div class="asset-tab">Equity</div>
+          <div class="asset-tab">Gold</div>
+          <div class="asset-tab">Bitcoin</div>
+          <div class="asset-tab bond-active">Bond</div>
+          <div class="asset-tab">Commodity</div>
+        </nav>
+
+        <div class="fi-content">
+          <div class="fi-access-grid">
+            <article class="fi-access-card">
+              <div class="num-badge">1</div>
+              <h2>Individual bonds via direct issuer <em>(e.g. U.S. Treasury Department)</em></h2>
+              <p class="where"><strong>Where:</strong> TreasuryDirect.gov. Electronic-only accounts; no broker, no markup. Lowest-cost route for taxable government exposure.</p>
+              <div></div>
+              <p class="minimums">Marketable Treasuries: <strong>$100</strong> minimum; electronic savings bonds: <strong>$25</strong> minimum</p>
+            </article>
+            <article class="fi-access-card">
+              <div class="num-badge">2</div>
+              <h2>Individual bonds via brokerage platforms</h2>
+              <p class="where"><strong>Where:</strong> Fidelity, Schwab, Interactive Brokers, Vanguard bond and Certificate of Deposit desks. Inventory varies; secondary market is fragmented.</p>
+              <div></div>
+              <p class="minimums">Typical lot: <strong>$1,000</strong> face per bond; minimums vary by issue and broker</p>
+            </article>
+            <article class="fi-access-card">
+              <div class="num-badge">3</div>
+              <h2>ETFs and mutual funds</h2>
+              <div class="examples">
+                <p><strong>Examples:</strong></p>
+                <ul>
+                  <li>Core aggregate bond index = AGG, BND</li>
+                  <li>Investment grade corporate bonds = LQD</li>
+                  <li>High yield bonds = HYG</li>
+                  <li>Long-duration treasury = TLT</li>
+                  <li>Money market funds = SPAXX, VMFXX, SWVXX</li>
+                </ul>
+              </div>
+              <p class="minimums">Low minimums, daily liquidity; most do <strong>not</strong> mature to par</p>
+            </article>
+            <article class="fi-access-card">
+              <div class="num-badge">4</div>
+              <h2>Ladders &amp; wrappers <em>(e.g. target-maturity ETFs, broker-built ladders, Separately Managed Accounts, or advisory portfolios)</em></h2>
+              <p class="where"><strong>Where:</strong> Brokerage tools, advisors, private banks, and defined-maturity ETF suites (iBonds, BulletShares).</p>
+              <div></div>
+              <p class="minimums">Good for <strong>planning</strong>; still check fees, liquidity, calls, and underlying holdings</p>
+            </article>
+          </div>
         </div>
       </div>
 
@@ -4362,33 +4404,44 @@
         <div class="page-tag">Page 21 / 37 &middot; Hold to Maturity</div>
       </header>
 
-      <div class="fi-content">
-        <div class="fi-htm-main">
-          <div class="fi-htm-left">
-            <div class="fi-htm-card">
-              <span class="lbl">What is hold-to-maturity (YTM)</span>
-              <p>Buy an individual bond and <strong>keep it until the issuer repays principal</strong> on the stated maturity date &mdash; collecting the scheduled coupons along the way.</p>
-            </div>
-            <div class="fi-htm-card">
-              <span class="lbl">Assumptions &middot; the protection holds only if all three are true</span>
-              <div class="fi-htm-assumptions">
-                <div class="num-badge">1</div><p>No credit event like default.</p>
-                <div class="num-badge">2</div><p>No call or prepayment surprise.</p>
-                <div class="num-badge">3</div><p>No forced sale.</p>
+      <div class="asset-detail">
+        <nav class="asset-menu" aria-label="Major asset class menu">
+          <p class="menu-label">Asset Class</p>
+          <div class="asset-tab">Equity</div>
+          <div class="asset-tab">Gold</div>
+          <div class="asset-tab">Bitcoin</div>
+          <div class="asset-tab bond-active">Bond</div>
+          <div class="asset-tab">Commodity</div>
+        </nav>
+
+        <div class="fi-content">
+          <div class="fi-htm-main">
+            <div class="fi-htm-left">
+              <div class="fi-htm-card">
+                <span class="lbl">What is hold-to-maturity (YTM)</span>
+                <p>Buy an individual bond and <strong>keep it until the issuer repays principal</strong> on the stated maturity date &mdash; collecting the scheduled coupons along the way.</p>
+              </div>
+              <div class="fi-htm-card">
+                <span class="lbl">Assumptions &middot; the protection holds only if all three are true</span>
+                <div class="fi-htm-assumptions">
+                  <div class="num-badge">1</div><p>No credit event like default.</p>
+                  <div class="num-badge">2</div><p>No call or prepayment surprise.</p>
+                  <div class="num-badge">3</div><p>No forced sale.</p>
+                </div>
+              </div>
+              <div class="fi-htm-card">
+                <span class="lbl">The benefit</span>
+                <p>Under those three conditions, your realized return by holding the bond until maturity is very close to the <strong>yield-to-maturity (YTM)</strong> quoted at purchase &mdash; interim price swings don't change what lands in your account.</p>
+                <span class="fi-htm-pointer">&rarr; See Appendix &middot; YTM mechanics for why realized return isn't exactly YTM (reinvestment-rate risk).</span>
               </div>
             </div>
-            <div class="fi-htm-card">
-              <span class="lbl">The benefit</span>
-              <p>Under those three conditions, your realized return by holding the bond until maturity is very close to the <strong>yield-to-maturity (YTM)</strong> quoted at purchase &mdash; interim price swings don't change what lands in your account.</p>
-              <span class="fi-htm-pointer">&rarr; See Appendix &middot; YTM mechanics for why realized return isn't exactly YTM (reinvestment-rate risk).</span>
+            <div class="fi-htm-right">
+              <figure class="fi-htm-screenshot">
+                <span class="lbl">EXAMPLE &middot; BROKERAGE BOND LIST</span>
+                <div class="img-wrap"><img src="assets/images/fi_brokerage_bond_list.png" alt="Brokerage bond list screenshot showing a US Treasury Note priced at a 6.423% yield to maturity"></div>
+              </figure>
+              <div class="fi-htm-caption">Buy this US-Treasury Note at the quoted price and <strong>6.423% YTM</strong> is the annualized return you lock in by holding to maturity &mdash; provided the three assumptions hold.</div>
             </div>
-          </div>
-          <div class="fi-htm-right">
-            <figure class="fi-htm-screenshot">
-              <span class="lbl">EXAMPLE &middot; BROKERAGE BOND LIST</span>
-              <div class="img-wrap"><img src="assets/images/fi_brokerage_bond_list.png" alt="Brokerage bond list screenshot showing a US Treasury Note priced at a 6.423% yield to maturity"></div>
-            </figure>
-            <div class="fi-htm-caption">Buy this US-Treasury Note at the quoted price and <strong>6.423% YTM</strong> is the annualized return you lock in by holding to maturity &mdash; provided the three assumptions hold.</div>
           </div>
         </div>
       </div>
@@ -4408,36 +4461,47 @@
         <div class="page-tag">Page 22 / 37 &middot; TLT Detail</div>
       </header>
 
-      <div class="fi-tlt-content">
-        <div class="fi-tlt-left">
-          <div>
-            <span class="lbl">Trading bonds = a bet on long-rate direction</span>
-            <p class="copy"><strong>5.077%</strong> is what a 20-year Treasury pays you IF you buy direct and hold to maturity. <strong>TLT</strong>, which holds the same 20-year Treasuries but never matures, has delivered roughly <strong>&minus;13% cumulatively</strong> over the past decade. Same underlying bonds; <strong>the wrapper is the bet</strong>.</p>
-          </div>
-          <div class="fi-tlt-reasons">
-            <div class="fi-tlt-reason"><div class="num-badge">1</div><p>Long-rate forecasting is harder than picking Nvidia.</p></div>
-            <div class="fi-tlt-reason"><div class="num-badge">2</div><p>TLT never reaches a maturity date.</p></div>
-            <div class="fi-tlt-reason"><div class="num-badge">3</div><p>Duration converts rate-views into equity-like P&amp;L.</p></div>
-          </div>
-        </div>
+      <div class="asset-detail">
+        <nav class="asset-menu" aria-label="Major asset class menu">
+          <p class="menu-label">Asset Class</p>
+          <div class="asset-tab">Equity</div>
+          <div class="asset-tab">Gold</div>
+          <div class="asset-tab">Bitcoin</div>
+          <div class="asset-tab bond-active">Bond</div>
+          <div class="asset-tab">Commodity</div>
+        </nav>
 
-        <div class="fi-tlt-right">
-          <figure class="fi-tlt-shot">
-            <span class="lbl">U.S. 20-Year Treasury Yield &middot; MarketWatch, May 24, 2026</span>
-            <div class="img-wrap"><img src="assets/images/fi_20yr_treasury_yield.png" alt="MarketWatch screenshot of the U.S. 20-year Treasury yield on May 24, 2026"></div>
-            <div class="caption"><strong>5.077%</strong> &mdash; hold-to-maturity yield on a 20-yr Treasury.</div>
-          </figure>
-          <div class="fi-tlt-bottom">
+        <div class="fi-tlt-content">
+          <div class="fi-tlt-left">
+            <div>
+              <span class="lbl">Trading bonds = a bet on long-rate direction</span>
+              <p class="copy"><strong>5.077%</strong> is what a 20-year Treasury pays you IF you buy direct and hold to maturity. <strong>TLT</strong>, which holds the same 20-year Treasuries but never matures, has delivered roughly <strong>&minus;13% cumulatively</strong> over the past decade. Same underlying bonds; <strong>the wrapper is the bet</strong>.</p>
+            </div>
+            <div class="fi-tlt-reasons">
+              <div class="fi-tlt-reason"><div class="num-badge">1</div><p>Long-rate forecasting is harder than picking Nvidia.</p></div>
+              <div class="fi-tlt-reason"><div class="num-badge">2</div><p>TLT never reaches a maturity date.</p></div>
+              <div class="fi-tlt-reason"><div class="num-badge">3</div><p>Duration converts rate-views into equity-like P&amp;L.</p></div>
+            </div>
+          </div>
+
+          <div class="fi-tlt-right">
             <figure class="fi-tlt-shot">
-              <span class="lbl">TLT Fact Sheet &middot; iShares</span>
-              <div class="img-wrap"><img src="assets/images/fi_tlt_factsheet.png" alt="TLT fact sheet snippet showing the iShares 20+ Year Treasury Bond ETF"></div>
-              <div class="caption">Same underlying bonds; ETF wrapper.</div>
+              <span class="lbl">U.S. 20-Year Treasury Yield &middot; MarketWatch, May 24, 2026</span>
+              <div class="img-wrap"><img src="assets/images/fi_20yr_treasury_yield.png" alt="MarketWatch screenshot of the U.S. 20-year Treasury yield on May 24, 2026"></div>
+              <div class="caption"><strong>5.077%</strong> &mdash; hold-to-maturity yield on a 20-yr Treasury.</div>
             </figure>
-            <figure class="fi-tlt-shot">
-              <span class="lbl">Growth of $10,000 &middot; TLT 10-Year &middot; iShares, May 22, 2026</span>
-              <div class="img-wrap"><img src="assets/images/fi_tlt_growth_10k_10yr.png" alt="iShares chart of $10,000 invested in TLT over 10 years, ending near $8,700"></div>
-              <div class="caption">$10K &rarr; &asymp;<strong>$8.7K</strong> over 10 yrs (&asymp; &minus;13% cumulative).</div>
-            </figure>
+            <div class="fi-tlt-bottom">
+              <figure class="fi-tlt-shot">
+                <span class="lbl">TLT Fact Sheet &middot; iShares</span>
+                <div class="img-wrap"><img src="assets/images/fi_tlt_factsheet.png" alt="TLT fact sheet snippet showing the iShares 20+ Year Treasury Bond ETF"></div>
+                <div class="caption">Same underlying bonds; ETF wrapper.</div>
+              </figure>
+              <figure class="fi-tlt-shot">
+                <span class="lbl">Growth of $10,000 &middot; TLT 10-Year &middot; iShares, May 22, 2026</span>
+                <div class="img-wrap"><img src="assets/images/fi_tlt_growth_10k_10yr.png" alt="iShares chart of $10,000 invested in TLT over 10 years, ending near $8,700"></div>
+                <div class="caption">$10K &rarr; &asymp;<strong>$8.7K</strong> over 10 yrs (&asymp; &minus;13% cumulative).</div>
+              </figure>
+            </div>
           </div>
         </div>
       </div>
