@@ -4,6 +4,8 @@ Static HTML presentation deck for an introductory wealth management discussion.
 
 The deck is designed for recent graduates, early-career professionals, and personal investors who want a practical framework for thinking about wealth, asset classes, portfolio construction, fees, and taxes. It is educational only and is not investment, tax, or legal advice.
 
+The hosted deck uses GoatCounter privacy-friendly analytics to count aggregate page views.
+
 ## Main Contents
 
 - **Section 1: What is wealth**

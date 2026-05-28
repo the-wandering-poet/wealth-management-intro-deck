@@ -17,6 +17,8 @@ Download options:
 
 This is an educational resource only, not investment, tax, or legal advice.
 
+The hosted page uses privacy-friendly analytics to count aggregate page views.
+
 If you find it helpful, please star the repo:
 
 https://github.com/the-wandering-poet/wealth-management-intro-deck
