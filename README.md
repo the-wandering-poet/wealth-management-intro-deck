@@ -1,8 +1,22 @@
 # Personal Wealth Management Intro Series
 
-Static HTML presentation deck for an introductory wealth management discussion.
+As I advance in my career, I have discovered something surprising: personal wealth management is still under-discussed and underserved.
 
-The deck is designed for recent graduates, early-career professionals, and personal investors who want a practical framework for thinking about wealth, asset classes, portfolio construction, fees, and taxes. It is educational only and is not investment, tax, or legal advice.
+When I started managing my own money more intentionally, I was struck by how large the information gap is. High-quality, practical guidance is hard to find, and paying for advice does not always solve the problem. Even people with money can still be poorly served by advisors, bankers, or products that do not fully align with their interests.
+
+I am also uneasy with the fact that the people who often need thoughtful financial guidance the most, including young graduates, older adults, and people with fewer resources, are frequently the least able to access it. Personal wealth management is not something that only matters to the rich. It shows up throughout our lives: when we receive our first salary, start investing, support family, buy insurance, pay taxes, evaluate advisors, or decide how much risk we can really afford.
+
+This deck is for anyone asking:
+
+- Where should I put my money?
+- How should I evaluate different investment opportunities?
+- How do I protect myself and my loved ones from being ripped off or taking on risks I do not understand?
+
+Together with my collaborator Fran, we have been thinking through these questions and recently completed a research project on the topic, drawing lessons from leading family offices, everyday investors, advisors, and our own mistakes. We wanted to distill what we learned into something approachable, practical, and shareable.
+
+If you find this helpful, please consider starring the repo and leaving comments or feedback for future updates.
+
+This material is educational only and is not investment, tax, or legal advice.
 
 ## Main Contents
 
@@ -28,19 +42,6 @@ Scroll vertically to move through the presentation. Keyboard arrows, spacebar, a
 - `assets/logos/` contains platform and provider logos.
 - `assets/interactive/` contains the embedded interactive return quilt.
 - `versions/` preserves prior deck versions and collaborator source versions.
-
-## Collaboration Workflow
-
-Use branches and pull requests so multiple people can edit the deck safely.
-
-1. Start from the latest `main`.
-2. Create a branch for the page or section you are editing, for example `edit/page-12-private-equity`.
-3. Edit `wealth_management_intro_deck_final.html` and any related files in `assets/`.
-4. Commit and push the branch.
-5. Open a pull request into `main`.
-6. Review the rendered GitHub Pages deck after merge.
-
-Coordinate page ownership when two people are editing the same HTML file. Merge frequently to reduce conflicts.
 
 ## Share With Friends
 
