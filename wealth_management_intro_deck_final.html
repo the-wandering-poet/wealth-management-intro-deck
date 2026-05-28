@@ -43,6 +43,14 @@
       gap: calc(28px * var(--deck-scale, 1));
     }
 
+    .slide-frame {
+      position: relative;
+      width: calc(1440px * var(--deck-scale, 1));
+      height: calc(810px * var(--deck-scale, 1));
+      flex: 0 0 auto;
+      scroll-margin-top: calc(18px * var(--deck-scale, 1));
+    }
+
     .slide {
       width: 1440px;
       height: 810px;
@@ -54,8 +62,14 @@
       display: grid;
       grid-template-rows: auto 1fr auto;
       overflow: hidden;
-      zoom: var(--deck-scale, 1);
-      scroll-margin-top: 18px;
+      transform: scale(var(--deck-scale, 1));
+      transform-origin: top left;
+    }
+
+    .slide-frame > .slide {
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
     /* Full-bleed PPTX-image slides: faithful render of the source PowerPoint slide. */
@@ -64,6 +78,9 @@
       padding: 0;
       background: #ffffff;
       position: relative;
+    }
+    .slide-frame > .slide.image-slide {
+      position: absolute;
     }
     .slide.image-slide img {
       width: 100%;
@@ -2156,12 +2173,12 @@
     .footer {
       display: grid;
       grid-template-columns: 1fr auto;
-      gap: 20px;
+      gap: 16px;
       align-items: center;
-      padding: 0 54px 18px;
+      padding: 0 54px 12px;
       color: var(--muted);
-      font-size: 14px;
-      line-height: 1.35;
+      font-size: 11.5px;
+      line-height: 1.24;
     }
 
     .footer > div {
@@ -2169,7 +2186,7 @@
     }
 
     .footer > div:last-child {
-      max-width: 760px;
+      max-width: 720px;
       text-align: right;
     }
 
@@ -5087,13 +5104,22 @@
       const slides = Array.from(document.querySelectorAll('.slide'));
       if (!deck || !slides.length) return;
 
-      slides.forEach((slide, slideIndex) => {
-        slide.id = `slide-${slideIndex + 1}`;
+      const frames = slides.map((slide, slideIndex) => {
+        const frame = document.createElement('div');
+        frame.className = 'slide-frame';
+        frame.id = `slide-${slideIndex + 1}`;
+        frame.setAttribute('aria-label', slide.getAttribute('aria-label') || `Slide ${slideIndex + 1}`);
+        slide.removeAttribute('id');
+        slide.parentNode.insertBefore(frame, slide);
+        frame.appendChild(slide);
+
         const tag = slide.querySelector('.page-tag');
-        if (!tag) return;
-        const parts = tag.textContent.split('·');
-        const label = parts.length > 1 ? ` · ${parts.slice(1).join('·').trim()}` : '';
-        tag.textContent = `Page ${slideIndex + 1} / ${slides.length}${label}`;
+        if (tag) {
+          const parts = tag.textContent.split('·');
+          const label = parts.length > 1 ? ` · ${parts.slice(1).join('·').trim()}` : '';
+          tag.textContent = `Page ${slideIndex + 1} / ${slides.length}${label}`;
+        }
+        return frame;
       });
 
       const updateDeckScale = () => {
@@ -5115,7 +5141,7 @@
 
       const scrollToSlide = (index, updateHash = true) => {
         const target = Math.max(0, Math.min(index, slides.length - 1));
-        slides[target].scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
+        frames[target].scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
         if (updateHash) {
           history.replaceState(null, '', `#slide-${target + 1}`);
         }
@@ -5125,8 +5151,8 @@
         const viewportTop = window.scrollY || document.documentElement.scrollTop || 0;
         let closest = 0;
         let closestDistance = Infinity;
-        slides.forEach((slide, index) => {
-          const distance = Math.abs(slide.offsetTop - viewportTop);
+        frames.forEach((frame, index) => {
+          const distance = Math.abs(frame.offsetTop - viewportTop);
           if (distance < closestDistance) {
             closest = index;
             closestDistance = distance;
