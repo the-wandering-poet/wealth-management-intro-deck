@@ -1,4 +1,4 @@
-# Demystify Personal Wealth Management
+# Personal Wealth Management Intro Series
 
 Static HTML presentation deck for an introductory wealth management discussion.
 
@@ -15,17 +15,9 @@ The deck is designed for recent graduates, early-career professionals, and perso
 
 ## View The Deck
 
-- GitHub Pages: [open the latest deck](https://the-wandering-poet.github.io/wealth-management-intro-deck/)
-- Final HTML deck: [wealth_management_intro_deck_final.html](https://the-wandering-poet.github.io/wealth-management-intro-deck/wealth_management_intro_deck_final.html)
+[Open the latest deck](https://the-wandering-poet.github.io/wealth-management-intro-deck/)
 
 Scroll vertically to move through the presentation. Keyboard arrows, spacebar, and page up/down also jump between slides.
-
-## Download
-
-- Download the full repository as a ZIP: [main.zip](https://github.com/the-wandering-poet/wealth-management-intro-deck/archive/refs/heads/main.zip)
-- Download the final HTML directly from GitHub: [wealth_management_intro_deck_final.html](https://github.com/the-wandering-poet/wealth-management-intro-deck/blob/main/wealth_management_intro_deck_final.html)
-
-For offline viewing, download the ZIP so the HTML file and `assets/` folder stay together.
 
 ## Repository Structure
 
