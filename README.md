@@ -16,8 +16,7 @@ The deck is designed for recent graduates, early-career professionals, and perso
 ## View The Deck
 
 - GitHub Pages: [open the latest deck](https://the-wandering-poet.github.io/wealth-management-intro-deck/)
-- Direct HTML file: [wealth_management_intro_deck.html](https://the-wandering-poet.github.io/wealth-management-intro-deck/wealth_management_intro_deck.html)
-- Final named copy: [wealth_management_intro_deck_final.html](https://the-wandering-poet.github.io/wealth-management-intro-deck/wealth_management_intro_deck_final.html)
+- Final HTML deck: [wealth_management_intro_deck_final.html](https://the-wandering-poet.github.io/wealth-management-intro-deck/wealth_management_intro_deck_final.html)
 
 Use the on-screen arrows, keyboard arrows, spacebar, or page up/down keys to move through the presentation.
 
@@ -30,9 +29,8 @@ For offline viewing, download the ZIP so the HTML file and `assets/` folder stay
 
 ## Repository Structure
 
-- `wealth_management_intro_deck.html` is the latest primary deck.
-- `wealth_management_intro_deck_final.html` is the final named release copy.
-- `index.html` redirects GitHub Pages visitors to the latest primary deck.
+- `wealth_management_intro_deck_final.html` is the canonical final deck.
+- `index.html` redirects GitHub Pages visitors to the final deck.
 - `assets/charts/` contains SVG chart assets.
 - `assets/images/` contains PNG screenshot-style assets.
 - `assets/logos/` contains platform and provider logos.
@@ -45,7 +43,7 @@ Use branches and pull requests so multiple people can edit the deck safely.
 
 1. Start from the latest `main`.
 2. Create a branch for the page or section you are editing, for example `edit/page-12-private-equity`.
-3. Edit `wealth_management_intro_deck.html` and any related files in `assets/`.
+3. Edit `wealth_management_intro_deck_final.html` and any related files in `assets/`.
 4. Commit and push the branch.
 5. Open a pull request into `main`.
 6. Review the rendered GitHub Pages deck after merge.
