@@ -6,7 +6,7 @@ View it here:
 
 https://the-wandering-poet.github.io/wealth-management-intro-deck/
 
-You can move through the deck with the on-screen arrows, keyboard arrows, spacebar, or page up/down keys.
+You can scroll vertically through the deck. Keyboard arrows, spacebar, and page up/down also jump between slides.
 
 Download options:
 

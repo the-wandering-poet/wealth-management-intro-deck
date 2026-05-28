@@ -18,7 +18,7 @@ The deck is designed for recent graduates, early-career professionals, and perso
 - GitHub Pages: [open the latest deck](https://the-wandering-poet.github.io/wealth-management-intro-deck/)
 - Final HTML deck: [wealth_management_intro_deck_final.html](https://the-wandering-poet.github.io/wealth-management-intro-deck/wealth_management_intro_deck_final.html)
 
-Use the on-screen arrows, keyboard arrows, spacebar, or page up/down keys to move through the presentation.
+Scroll vertically to move through the presentation. Keyboard arrows, spacebar, and page up/down also jump between slides.
 
 ## Download
 

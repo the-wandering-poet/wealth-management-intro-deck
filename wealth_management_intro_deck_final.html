@@ -31,80 +31,31 @@
       color: var(--ink);
       background: #efe8df;
       font-family: Inter, Arial, Helvetica, sans-serif;
-      overflow: hidden;
+      overflow: auto;
     }
 
     .deck {
       min-height: 100vh;
-      height: 100vh;
-      display: grid;
-      place-items: center;
-      padding: 28px;
-      gap: 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: calc(28px * var(--deck-scale, 1));
+      gap: calc(28px * var(--deck-scale, 1));
     }
 
     .slide {
-      width: min(100%, 1440px);
-      max-height: calc(100vh - 56px);
-      aspect-ratio: 16 / 9;
+      width: 1440px;
+      height: 810px;
+      max-height: none;
+      aspect-ratio: auto;
       background: var(--paper);
       border: 1px solid var(--line);
       box-shadow: 0 24px 60px rgba(55, 42, 31, 0.18);
       display: grid;
       grid-template-rows: auto 1fr auto;
       overflow: hidden;
-    }
-
-    .deck.presentation-mode .slide {
-      display: none;
-    }
-
-    .deck.presentation-mode .slide.is-active {
-      display: grid;
-    }
-
-    .presentation-controls {
-      position: fixed;
-      right: 22px;
-      bottom: 18px;
-      z-index: 20;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding: 7px;
-      border: 1px solid rgba(93, 105, 112, 0.28);
-      border-radius: 999px;
-      background: rgba(255, 253, 248, 0.88);
-      box-shadow: 0 12px 30px rgba(55, 42, 31, 0.16);
-      backdrop-filter: blur(10px);
-    }
-
-    .presentation-controls button {
-      width: 34px;
-      height: 34px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--ink);
-      background: var(--panel);
-      font-size: 18px;
-      line-height: 1;
-      font-weight: 850;
-      cursor: pointer;
-    }
-
-    .presentation-controls button:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .presentation-counter {
-      min-width: 70px;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1;
-      font-weight: 780;
-      text-align: center;
-      user-select: none;
+      zoom: var(--deck-scale, 1);
+      scroll-margin-top: 18px;
     }
 
     /* Full-bleed PPTX-image slides: faithful render of the source PowerPoint slide. */
@@ -2228,38 +2179,9 @@
     }
 
     @media (max-width: 920px) {
-      body {
-        display: block;
-        overflow: auto;
-      }
-
       .deck {
-        padding: 0;
-        display: block;
-        place-items: unset;
-        width: calc(1440px * var(--mobile-slide-scale, 1));
-        height: calc(810px * var(--mobile-slide-scale, 1));
-        min-height: calc(810px * var(--mobile-slide-scale, 1));
-      }
-
-      .slide {
-        width: 1440px;
-        height: 810px;
-        max-height: none;
-        min-height: 0;
-        aspect-ratio: auto;
-        overflow: hidden;
-        transform: scale(var(--mobile-slide-scale, 1));
-        transform-origin: top left;
-      }
-
-      .deck.presentation-mode .slide {
-        min-height: 0;
-      }
-
-      .presentation-controls {
-        right: 12px;
-        bottom: 12px;
+        padding: calc(12px * var(--deck-scale, 1));
+        gap: calc(18px * var(--deck-scale, 1));
       }
     }
 
@@ -5166,6 +5088,7 @@
       if (!deck || !slides.length) return;
 
       slides.forEach((slide, slideIndex) => {
+        slide.id = `slide-${slideIndex + 1}`;
         const tag = slide.querySelector('.page-tag');
         if (!tag) return;
         const parts = tag.textContent.split('·');
@@ -5173,40 +5096,16 @@
         tag.textContent = `Page ${slideIndex + 1} / ${slides.length}${label}`;
       });
 
-      deck.classList.add('presentation-mode');
-
-      const updateMobileScale = () => {
-        const isMobile = window.matchMedia('(max-width: 920px)').matches;
-        if (!isMobile) {
-          deck.style.removeProperty('--mobile-slide-scale');
-          return;
-        }
+      const updateDeckScale = () => {
         const viewport = window.visualViewport || window;
         const viewportWidth = viewport.width || window.innerWidth;
-        const viewportHeight = viewport.height || window.innerHeight;
-        const fitWidth = viewportWidth / 1440;
-        const fitHeight = Math.max(0.28, (viewportHeight - 108) / 810);
-        const scale = Math.min(1, Math.max(fitWidth, Math.min(0.72, fitHeight)));
-        deck.style.setProperty('--mobile-slide-scale', scale.toFixed(4));
+        const sidePadding = viewportWidth <= 920 ? 24 : 56;
+        const scale = Math.min(1, Math.max(0.24, (viewportWidth - sidePadding) / 1440));
+        deck.style.setProperty('--deck-scale', scale.toFixed(4));
       };
-      updateMobileScale();
-      window.addEventListener('resize', updateMobileScale);
-      window.visualViewport?.addEventListener('resize', updateMobileScale);
-
-      const controls = document.createElement('nav');
-      controls.className = 'presentation-controls';
-      controls.setAttribute('aria-label', 'Slide navigation');
-      controls.innerHTML = `
-        <button type="button" class="presentation-prev" aria-label="Previous slide">&lsaquo;</button>
-        <span class="presentation-counter" aria-live="polite"></span>
-        <button type="button" class="presentation-next" aria-label="Next slide">&rsaquo;</button>
-      `;
-      document.body.appendChild(controls);
-
-      const counter = controls.querySelector('.presentation-counter');
-      const prevButton = controls.querySelector('.presentation-prev');
-      const nextButton = controls.querySelector('.presentation-next');
-      let current = 0;
+      updateDeckScale();
+      window.addEventListener('resize', updateDeckScale);
+      window.visualViewport?.addEventListener('resize', updateDeckScale);
 
       const parseHash = () => {
         const match = window.location.hash.match(/^#slide-(\d+)$/);
@@ -5214,81 +5113,50 @@
         return Math.max(0, Math.min(Number(match[1]) - 1, slides.length - 1));
       };
 
-      const showSlide = (index, updateHash = true) => {
-        current = Math.max(0, Math.min(index, slides.length - 1));
-        slides.forEach((slide, slideIndex) => {
-          const isActive = slideIndex === current;
-          slide.classList.toggle('is-active', isActive);
-          slide.toggleAttribute('hidden', !isActive);
-        });
-        counter.textContent = `${current + 1} / ${slides.length}`;
-        prevButton.disabled = current === 0;
-        nextButton.disabled = current === slides.length - 1;
+      const scrollToSlide = (index, updateHash = true) => {
+        const target = Math.max(0, Math.min(index, slides.length - 1));
+        slides[target].scrollIntoView({ behavior: 'smooth', block: 'start', inline: 'nearest' });
         if (updateHash) {
-          history.replaceState(null, '', `#slide-${current + 1}`);
-        }
-        if (window.matchMedia('(max-width: 920px)').matches) {
-          window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+          history.replaceState(null, '', `#slide-${target + 1}`);
         }
       };
 
-      const nextSlide = () => showSlide(current + 1);
-      const prevSlide = () => showSlide(current - 1);
-
-      prevButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        prevSlide();
-      });
-      nextButton.addEventListener('click', (event) => {
-        event.stopPropagation();
-        nextSlide();
-      });
+      const currentSlideIndex = () => {
+        const viewportTop = window.scrollY || document.documentElement.scrollTop || 0;
+        let closest = 0;
+        let closestDistance = Infinity;
+        slides.forEach((slide, index) => {
+          const distance = Math.abs(slide.offsetTop - viewportTop);
+          if (distance < closestDistance) {
+            closest = index;
+            closestDistance = distance;
+          }
+        });
+        return closest;
+      };
 
       document.addEventListener('keydown', (event) => {
         const tagName = event.target?.tagName?.toLowerCase();
         if (['input', 'textarea', 'select', 'button'].includes(tagName)) return;
         if (event.key === 'ArrowRight' || event.key === 'PageDown' || event.key === ' ') {
           event.preventDefault();
-          nextSlide();
+          scrollToSlide(currentSlideIndex() + 1);
         } else if (event.key === 'ArrowLeft' || event.key === 'PageUp') {
           event.preventDefault();
-          prevSlide();
+          scrollToSlide(currentSlideIndex() - 1);
         } else if (event.key === 'Home') {
           event.preventDefault();
-          showSlide(0);
+          scrollToSlide(0);
         } else if (event.key === 'End') {
           event.preventDefault();
-          showSlide(slides.length - 1);
+          scrollToSlide(slides.length - 1);
         }
       });
 
-      slides.forEach((slide) => {
-        slide.addEventListener('click', (event) => {
-          if (event.target.closest('a, button, input, textarea, select, iframe, [data-wealth-animation]')) return;
-          nextSlide();
-        });
-      });
-
-      let touchStartX = 0;
-      let touchStartY = 0;
-      document.addEventListener('touchstart', (event) => {
-        if (!event.touches.length) return;
-        touchStartX = event.touches[0].clientX;
-        touchStartY = event.touches[0].clientY;
-      }, { passive: true });
-      document.addEventListener('touchend', (event) => {
-        if (!event.changedTouches.length) return;
-        if (event.target.closest('a, button, input, textarea, select, iframe')) return;
-        if (document.documentElement.scrollWidth > window.innerWidth + 12) return;
-        const dx = event.changedTouches[0].clientX - touchStartX;
-        const dy = event.changedTouches[0].clientY - touchStartY;
-        if (Math.abs(dx) < 52 || Math.abs(dx) < Math.abs(dy) * 1.4) return;
-        if (dx < 0) nextSlide();
-        else prevSlide();
-      }, { passive: true });
-
-      window.addEventListener('hashchange', () => showSlide(parseHash(), false));
-      showSlide(parseHash(), false);
+      window.addEventListener('hashchange', () => scrollToSlide(parseHash(), false));
+      if (window.location.hash) {
+        requestAnimationFrame(() => scrollToSlide(parseHash(), false));
+      }
     })();
 
     (() => {
