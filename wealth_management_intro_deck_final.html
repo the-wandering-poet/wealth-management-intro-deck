@@ -589,19 +589,79 @@
         overflow: visible;
       }
 
+      .slide-frame.feedback-frame .header {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 20px 20px 14px;
+      }
+
+      .slide-frame.feedback-frame .kicker {
+        font-size: 11px;
+        margin-bottom: 4px;
+      }
+
+      .slide-frame.feedback-frame h1 {
+        max-width: none;
+        font-size: 25px;
+        line-height: 1.12;
+      }
+
+      .slide-frame.feedback-frame .page-tag {
+        min-width: 0;
+        padding-top: 0;
+        text-align: left;
+        font-size: 13px;
+      }
+
       .feedback-content {
         grid-template-columns: 1fr;
-        padding: 18px;
-        gap: 14px;
+        padding: 14px;
+        gap: 12px;
       }
 
       .feedback-card,
       .feedback-side-card {
-        padding: 18px;
+        padding: 16px;
+        gap: 10px;
+      }
+
+      .feedback-card h2,
+      .feedback-side-card h2 {
+        font-size: 23px;
+        line-height: 1.14;
+      }
+
+      .feedback-card p,
+      .feedback-side-card p,
+      .feedback-mini-list {
+        font-size: 14px;
+        line-height: 1.32;
       }
 
       .feedback-box {
-        min-height: 150px;
+        min-height: 128px;
+        padding: 12px 14px;
+        font-size: 14px;
+      }
+
+      .feedback-button,
+      .repo-star-link {
+        min-height: 40px;
+        padding: 0 14px;
+        font-size: 14px;
+      }
+
+      .feedback-email-input {
+        min-height: 40px;
+        font-size: 14px;
+      }
+
+      .slide-frame.feedback-frame .footer {
+        grid-template-columns: 1fr;
+        gap: 4px;
+        padding: 10px 20px 14px;
+        font-size: 11px;
+        text-align: left;
       }
     }
 
